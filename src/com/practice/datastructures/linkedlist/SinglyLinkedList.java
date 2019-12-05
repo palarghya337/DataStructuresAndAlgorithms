@@ -20,6 +20,7 @@ public class SinglyLinkedList<E> {
 		} else {
 			lastNode.next = localNode;
 		}
+		lastNode = localNode;
 		size++;
 	}
 	/**
@@ -61,6 +62,9 @@ public class SinglyLinkedList<E> {
 		}
 		size--;
 		return isElementAvailable;
+	}
+	public int size() {
+		return size;
 	}
 	private static class Node<E> {
 		
