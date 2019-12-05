@@ -59,6 +59,8 @@ public class SinglyLinkedList<E> {
 		}
 		if (prevNode == null) {
 			node = nextNode;
+		} else {
+			prevNode.next = nextNode;
 		}
 		size--;
 		return isElementAvailable;
