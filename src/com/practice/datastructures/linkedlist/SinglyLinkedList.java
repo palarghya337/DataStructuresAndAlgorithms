@@ -60,6 +60,7 @@ public class SinglyLinkedList<E> {
 		if (prevNode == null) {
 			node = nextNode;
 		} else {
+			currentNode.next = null;
 			prevNode.next = nextNode;
 		}
 		size--;
