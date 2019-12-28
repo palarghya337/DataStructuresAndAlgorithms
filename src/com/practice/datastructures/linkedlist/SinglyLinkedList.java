@@ -60,11 +60,49 @@ public class SinglyLinkedList<E> {
 		if (prevNode == null) {
 			node = nextNode;
 		} else {
-			currentNode.next = null;
-			prevNode.next = nextNode;
+			prevNode.next = nextNode;//8374245387-chennareddy
+			if (nextNode == null) {
+				lastNode = prevNode;
+			} else {
+				currentNode.next = null;
+			}
 		}
 		size--;
 		return isElementAvailable;
+	}
+	/**
+	 * Not fully implemented
+	 * @param node
+	 * @return
+	 */
+	public boolean remove(Node<E> node) {
+		
+		if (node != null) {
+			
+			Node<E> nextNode = node.next;
+			if (nextNode != null) {
+				
+				node.element = nextNode.element;
+				node.next = nextNode.next;
+			}
+		}
+		return false;
+	}
+	public void reverse() {
+		
+		Node<E> currentNode = node;
+		Node<E> nextNode = currentNode.next;
+		Node<E> prevNode = null;
+		while (nextNode != null) {
+			
+			Node<E> temp = prevNode;
+			prevNode = currentNode;
+			currentNode = nextNode;
+			nextNode = currentNode.next;
+			prevNode.next = temp;
+		}
+		currentNode.next = prevNode;
+		node = currentNode;
 	}
 	public int size() {
 		return size;

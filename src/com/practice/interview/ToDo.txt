@@ -1,0 +1,5 @@
+ToDo:
+-----
+1. Practice how to find time complexity
+2. Practice how to compare functions.
+3. Practice asymptotic notations.
