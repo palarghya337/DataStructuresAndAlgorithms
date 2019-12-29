@@ -3,3 +3,5 @@ ToDo:
 1. Practice how to find time complexity
 2. Practice how to compare functions.
 3. Practice asymptotic notations.
+4. Disjoint Sets, Weight, Union and collapsing find
+5. Practice masters theorem for decreasing functions.
