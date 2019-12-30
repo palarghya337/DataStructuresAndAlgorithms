@@ -40,7 +40,13 @@ public class MergeSort {
 		int sendHalfIndex = mid + 1;
 		int[] tempArr = new int[end - start + 1];
 		for (int i = start; i <= end; i++) {
-			
+			/* 
+			 * Below scenario we are copying the array elements into
+			 * temp array after dividing an array into smaller parts.
+			 * Need to compare both side arrays first element with another
+			 * side. If first side element is less then second element
+			 * then copy that into temp array.
+			 **/
 			if (firstHalfIndex <= mid && (sendHalfIndex > end
 					|| array[firstHalfIndex] < array[sendHalfIndex])) {
 				

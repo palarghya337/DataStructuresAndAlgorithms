@@ -4,4 +4,4 @@ ToDo:
 2. Practice how to compare functions.
 3. Practice asymptotic notations.
 4. Disjoint Sets, Weight, Union and collapsing find
-5. Practice masters theorem for decreasing functions.
+5. Practice masters theorem for decreasing, dividing functions.
