@@ -8,10 +8,13 @@ public class QuickSort {
 		
 		int array[] = {10, 16, 18, 2, 15, 6, 3, 9, 5};
 		System.out.println(Arrays.toString(array));
-		sort(array, 0, array.length - 1);
+		sort(array);
 		System.out.println(Arrays.toString(array));
 	}
-	public static void sort(int[] array, int low, int high) {
+	public static void sort(int[] array) {
+		sort(array, 0, array.length - 1);
+	}
+	private static void sort(int[] array, int low, int high) {
 
 		if (low < high) {
 			

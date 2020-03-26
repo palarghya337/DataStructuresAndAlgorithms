@@ -8,6 +8,9 @@ public class MergeSort {
 
 		int[] array = {10, 16, 18, 2, 15, 6, 3, 9, 5};
 		System.out.println(Arrays.toString(array));
+		sort(array);
+	}
+	public static void sort(int[] array) {
 		divide(array, 0, array.length - 1);
 	}
 

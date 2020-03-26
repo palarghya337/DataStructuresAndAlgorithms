@@ -8,11 +8,12 @@ public class BubbleSort {
 
 		int[] array = {10, 16, 18, 2, 15, 6, 3, 9, 5};
 		System.out.println(Arrays.toString(array));
-		sort(array, array.length);
+		sort(array);
 	}
 
-	private static void sort(int[] array, int arrayLength) {
+	private static void sort(int[] array) {
 		
+		int arrayLength = array.length;
 		for (int i = arrayLength - 1; i > -1; i--) {
 			for (int j = 0; j < i; j++) {
 				
