@@ -1,28 +1,22 @@
 package com.practice.algorithms.sorting;
 
 import java.util.Arrays;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class MergeSort {
 
 	public static void main(String[] args) {
 
-		int arraySize = 10;
-		Random random = new Random();
-		int[] array = IntStream.generate(() -> random.nextInt(50))
-				.distinct().limit(arraySize).toArray();
+		int[] array = {10, 16, 18, 2, 15, 6, 3, 9, 5};
 		System.out.println(Arrays.toString(array));
-		sort(array, 0, arraySize - 1);
-		System.out.println(Arrays.toString(array));
+		divide(array, 0, array.length - 1);
 	}
 
-	private static void sort(int[] array, int start, int end) {
+	private static void divide(int[] array, int start, int end) {
 		
 		if (start < end) {
 			int mid = (start + end) / 2;
-			sort(array, start, mid);
-			sort(array, mid+1, end);
+			divide(array, start, mid);
+			divide(array, mid+1, end);
 			merge(array, start, mid, end);
 		}
 	}
@@ -59,5 +53,6 @@ public class MergeSort {
 		for (int i = 0; i < j; i++) {
 			array[start++] = tempArr[i];
 		}
+		System.out.println(Arrays.toString(array));
 	}
 }

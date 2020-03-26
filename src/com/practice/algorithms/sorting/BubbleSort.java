@@ -1,20 +1,14 @@
 package com.practice.algorithms.sorting;
 
 import java.util.Arrays;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class BubbleSort {
 
 	public static void main(String[] args) {
 
-		int arraySize = 10;
-		Random random = new Random();
-		int[] array = IntStream.generate(() -> random.nextInt(50))
-				.distinct().limit(arraySize).toArray();
+		int[] array = {10, 16, 18, 2, 15, 6, 3, 9, 5};
 		System.out.println(Arrays.toString(array));
-		sort(array, arraySize);
-		System.out.println(Arrays.toString(array));
+		sort(array, array.length);
 	}
 
 	private static void sort(int[] array, int arrayLength) {
@@ -28,6 +22,7 @@ public class BubbleSort {
 					int temp = array[j];
 					array[j] = array[k];
 					array[k] = temp;
+					System.out.println(Arrays.toString(array));
 				}
 			}
 		}
