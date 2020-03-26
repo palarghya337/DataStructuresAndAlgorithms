@@ -12,7 +12,7 @@ public class QuickSort {
 		System.out.println(Arrays.toString(array));
 	}
 	public static void sort(int[] array) {
-		sort(array, 0, array.length - 1);
+		sort2(array, 0, array.length - 1);
 	}
 	private static void sort(int[] array, int low, int high) {
 
@@ -51,5 +51,38 @@ public class QuickSort {
 			sort(array, low, i - 1);
 			sort(array, i, high);
 		}
+	}
+	private static void sort2(int[] array, int low, int high) {
+		
+		if (low < high) {
+			
+			int i = low;
+			int j = high;
+			int pivotElement = array[low];
+			while (i < j) {
+				
+				boolean isHigherThanPivot = pivotElement <= array[i];
+				boolean isLowerThanPivot = pivotElement > array[j];
+				if (isHigherThanPivot && isLowerThanPivot) {
+					swap(array, i, j);
+					i++;
+					j--;
+				}
+				if (!isHigherThanPivot) {
+					i++;
+				}
+				if (!isLowerThanPivot) {
+					j--;
+				}
+			}
+			sort2(array, low, j);
+			sort2(array, j + 1, high);
+		}
+	}
+	private static void swap(int[] array, int i, int j) {
+		
+		int temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
 	}
 }
