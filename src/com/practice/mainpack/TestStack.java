@@ -17,10 +17,12 @@ public class TestStack {
 			System.out.print(i + " ");
 			stack.add(i);
 		});
-		System.out.println();
 		
-		IntStream.range(0, 10).forEach(i -> {
+		System.out.println("\n" + stack.isEmpty());
+		IntStream.range(0, stackSize).forEach(i -> {
 			System.out.print(stack.remove() + " ");
 		});
+		
+		System.out.println("\n" + stack.isEmpty());
 	}
 }

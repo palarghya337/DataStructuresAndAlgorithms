@@ -30,16 +30,21 @@ public class TestQueue {
 		
 		new Thread(() -> {
 			
-			while (true) {
+			boolean isStop = true;
+			while (isStop) {
 				
+				sleep(1000);
 				Object obj = null;;
 				synchronized(stack) {
 					
 					obj = stack.remove();
+					System.out.println(stack.isEmpty());
 				}
 				if (obj != null) {
 					System.out.println(obj + "-> removed");
-					sleep(1000);
+				}
+				if (stack.isEmpty()) {
+					isStop = false;
 				}
 			}
 		}).start();

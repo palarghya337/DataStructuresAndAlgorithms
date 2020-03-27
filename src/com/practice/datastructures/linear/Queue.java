@@ -40,4 +40,7 @@ public class Queue<T> {
 		}
 		return element;
 	}
+	public boolean isEmpty() {
+		return addIndex - removeIndex == 0;
+	}
 }

@@ -8,31 +8,30 @@ public class Stack<T> {
 	
 	public Stack() {
 		maxSize = 10;
-		init();
-	}
-	private void init() {
-		size = maxSize;
 		elements = new Object[maxSize];
 	}
 	public Stack(int size) {
 		maxSize = size;
-		init();
+		elements = new Object[maxSize];
 	}
 	public boolean add(T element) {
 		
-		if (size > 0) {
-			elements[--size] = element;
+		if (size < maxSize) {
+			elements[size++] = element;
 			return true;
 		}
 		return false;
 	}
 	public T remove() {
-		if (size >= maxSize) {
+		if (size < 0) {
 			return null;
 		}
 		@SuppressWarnings("unchecked")
-		T element = (T) elements[size];
-		elements[size++] = null;
+		T element = (T) elements[--size];
+		elements[size] = null;
 		return element;
+	}
+	public boolean isEmpty() {
+		return size == 0;
 	}
 }
