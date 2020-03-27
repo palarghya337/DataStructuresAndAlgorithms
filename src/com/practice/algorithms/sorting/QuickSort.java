@@ -68,18 +68,35 @@ public class QuickSort {
 			int pivotElement = array[low];
 			while (i < j) {
 				
-				boolean isHigherThanPivot = pivotElement <= array[i];
-				boolean isLowerThanPivot = pivotElement >= array[j];
-				if (isHigherThanPivot && isLowerThanPivot) {
+				boolean isPivotLessOrEquals = pivotElement <= array[i];
+				boolean isPivotHigherOrEquals = pivotElement >= array[j];
+				if (isPivotLessOrEquals && isPivotHigherOrEquals) {
+					/*
+					 * Swap only if pivot element is lower or equals
+					 * than i'th element of an array and higher or
+					 * equals than j'th element of an array 
+					 **/
 					swap(array, i, j);
 				}
-				if (!isHigherThanPivot) {
+				if (!isPivotLessOrEquals) {
+					/*
+					 * Increment the index of i when pivot element is
+					 * higher than i'th element.
+					 **/
 					i++;
 				}
-				if (!isLowerThanPivot) {
+				if (!isPivotHigherOrEquals) {
+					/*
+					 * Decrement the index j when pivot element is lower
+					 * than j'th element.
+					 **/
 					j--;
 				}
 			}
+			/*
+			 * Below we are partitioning the array and follow the same
+			 * steps above.
+			 **/
 			sort2(array, low, j);
 			sort2(array, j + 1, high);
 		}
