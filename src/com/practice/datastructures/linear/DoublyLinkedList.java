@@ -1,4 +1,4 @@
-package com.practice.datastructures.linkedlist;
+package com.practice.datastructures.linear;
 
 public class DoublyLinkedList<E> {
 

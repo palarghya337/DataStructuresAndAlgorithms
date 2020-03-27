@@ -2,7 +2,7 @@ package com.practice.mainpack;
 
 import java.util.stream.IntStream;
 
-import com.practice.datastructures.linkedlist.SinglyLinkedList;
+import com.practice.datastructures.linear.SinglyLinkedList;
 
 public class TestSinglyLinkedList {
 
