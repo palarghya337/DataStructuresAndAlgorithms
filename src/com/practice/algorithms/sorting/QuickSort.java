@@ -77,20 +77,21 @@ public class QuickSort {
 					 * equals than j'th element of an array 
 					 **/
 					swap(array, i, j);
-				}
-				if (!isPivotLessOrEquals) {
-					/*
-					 * Increment the index of i when pivot element is
-					 * higher than i'th element.
-					 **/
-					i++;
-				}
-				if (!isPivotHigherOrEquals) {
-					/*
-					 * Decrement the index j when pivot element is lower
-					 * than j'th element.
-					 **/
-					j--;
+				} else {
+					if (!isPivotLessOrEquals) {
+						/*
+						 * Increment the index of i when pivot element is
+						 * higher than i'th element.
+						 **/
+						i++;
+					}
+					if (!isPivotHigherOrEquals) {
+						/*
+						 * Decrement the index j when pivot element is lower
+						 * than j'th element.
+						 **/
+						j--;
+					}
 				}
 			}
 			/*
