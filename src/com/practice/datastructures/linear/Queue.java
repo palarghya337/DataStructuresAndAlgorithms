@@ -11,6 +11,10 @@ public class Queue<T> {
 		maxSize = 10;
 		elements = new Object[maxSize];
 	}
+	public Queue(int size) {
+		maxSize = size;
+		elements = new Object[maxSize];
+	}
 	public boolean add(T element) {
 		
 		if (addIndex >= maxSize) {
