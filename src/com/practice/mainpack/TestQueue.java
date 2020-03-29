@@ -1,53 +1,67 @@
 package com.practice.mainpack;
 
-import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
 import com.practice.datastructures.linear.Queue;
 
 public class TestQueue {
 
+	private static boolean isStop = false;
+	
 	public static void main(String[] args) {
 		
-		int itemProducingSize = 20;
-		Queue<Integer> stack = new Queue<>();
-		Random random = new Random();
+		Queue<Integer> queue = new Queue<>();
+		ExecutorService service = Executors.newFixedThreadPool(2);
+		service.execute(() -> produce(queue));
+		service.execute(() -> consume(queue));
+		service.shutdown();
+	}
+
+	private static void consume(Queue<Integer> queue) {
 		
-		new Thread(() -> {
+		int count = 0;
+		while (!isStop) {
 			
-			IntStream.generate(() -> random.nextInt(50))
-			.distinct().limit(itemProducingSize).forEach(i -> {
-				
-				synchronized(stack) {
-					if (stack.add(i)) {
-						System.out.println(i + "-> added");
+			sleep(500);
+			Integer obj = null;
+			synchronized(queue) {
+
+				obj = queue.remove();
+				if (count == 3) {
+					count = 0;
+					queue.notify();
+				}
+				count++;
+			}
+			if (obj != null) {
+				System.out.println(obj + "-> removed");
+				isStop = obj == 19;
+			}
+		}
+	}
+
+	private static void produce(Queue<Integer> queue) {
+
+		IntStream.range(0, 20).forEach(i -> {
+			
+			synchronized(queue) {
+				if (!queue.add(i)) {
+					try {
+						System.out.println(i + " is waiting as queue became empty.");
+						queue.wait();
+						queue.add(i);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
-				sleep(500);
-			});
-		}).start();
-		System.out.println();
-		
-		new Thread(() -> {
-			
-			boolean isStop = true;
-			while (isStop) {
-				
-				sleep(1000);
-				Object obj = null;;
-				synchronized(stack) {
-					
-					obj = stack.remove();
-					System.out.println(stack.isEmpty());
-				}
-				if (obj != null) {
-					System.out.println(obj + "-> removed");
-				}
-				if (stack.isEmpty()) {
-					isStop = false;
-				}
+				System.out.println(i + "-> added");
+				queue.notify();
+				sleep(100);
 			}
-		}).start();
+		});
+		isStop = true;
 	}
 
 	private static void sleep(long milis) {

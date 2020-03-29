@@ -1,7 +1,5 @@
 package com.practice.datastructures.linear;
 
-import java.util.Arrays;
-
 public class Queue<T> {
 
 	private int addIndex;
@@ -15,14 +13,11 @@ public class Queue<T> {
 	}
 	public boolean add(T element) {
 		
-		if (addIndex < maxSize) {
-			elements[addIndex++] = element;
-			System.out.println(Arrays.toString(elements));
-			return true;
-		} else if (elements[0] == null) {
+		if (addIndex >= maxSize) {
 			addIndex = 0;
+		}
+		if (addIndex < maxSize && elements[addIndex] == null) {
 			elements[addIndex++] = element;
-			System.out.println(Arrays.toString(elements));
 			return true;
 		}
 		return false;
@@ -36,7 +31,6 @@ public class Queue<T> {
 		T element = (T) elements[removeIndex];
 		if (element != null) {
 			elements[removeIndex++] = null;
-			System.out.println(Arrays.toString(elements));
 		}
 		return element;
 	}
