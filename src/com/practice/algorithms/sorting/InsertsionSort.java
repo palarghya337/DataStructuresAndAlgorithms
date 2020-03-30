@@ -22,9 +22,10 @@ public class InsertsionSort {
 		
 		int arrayLength = array.length;
 		for (int i = 0; i < arrayLength - 1; i++) {
-			
+
+			int j = i;
 			int small = array[i + 1];
-			if (array[i] > small) {
+			while (j >= 0 && array[j] > small) {
 				/*
 				 * if element of index i is greater than element
 				 * of index (i + 1) then move all the previous
@@ -34,15 +35,11 @@ public class InsertsionSort {
 				 * the element to the last found (index + 1)
 				 * position.
 				 **/
-				int j = i;
-				while (j >= 0 && array[j] > small) {
-					
-					array[j + 1] = array[j];
-					j--;
-				}
-				array[j + 1] = small;
-				System.out.println(Arrays.toString(array));
+				array[j + 1] = array[j];
+				j--;
 			}
+			array[j + 1] = small;
+			System.out.println(Arrays.toString(array));
 		}
 	}
 }
