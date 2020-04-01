@@ -3,7 +3,7 @@ package com.practice.datastructures.linear;
 public class SinglyLinkedList<E> {
 
 	private int size;
-	private Node<E> node;
+	private Node<E> headNode;
 	private Node<E> lastNode;
 	
 	public SinglyLinkedList() {
@@ -12,11 +12,11 @@ public class SinglyLinkedList<E> {
 	/**
 	 * @param element
 	 */
-	public void add(E element) {
+	public void insert(E element) {
 		
 		final Node<E> localNode = new Node<>(element, null);
-		if (this.node == null) {
-			this.node = localNode;
+		if (this.headNode == null) {
+			this.headNode = localNode;
 		} else {
 			lastNode.next = localNode;
 		}
@@ -32,13 +32,27 @@ public class SinglyLinkedList<E> {
 		if (index < size) {
 			
 			int count = 0;
-			Node<E> localNode = node;
+			Node<E> localNode = headNode;
 			while (count++ < index) {
 				localNode = localNode.next;
 			}
 			return localNode.element;
 		}
 		return null;
+	}
+	public Node<E> getNode(int index) {
+		
+		int count = 1;
+		Node<E> tempNode = headNode;
+		while (count != index) {
+			
+			tempNode = tempNode.next;
+			if (tempNode == null) {
+				throw new RuntimeException("Node is not available.");
+			}
+			count++;
+		}
+		return tempNode;
 	}
 	/**
 	 * @param element
@@ -47,7 +61,7 @@ public class SinglyLinkedList<E> {
 	public boolean remove(E element) {
 		
 		Node<E> prevNode = null;
-		Node<E> currentNode = node;
+		Node<E> currentNode = headNode;
 		Node<E> nextNode = currentNode.next;
 		boolean isElementAvailable = element.equals(currentNode.element);
 		while (!isElementAvailable) {
@@ -58,7 +72,7 @@ public class SinglyLinkedList<E> {
 			isElementAvailable = element.equals(currentNode.element);
 		}
 		if (prevNode == null) {
-			node = nextNode;
+			headNode = nextNode;
 		} else {
 			prevNode.next = nextNode;//8374245387-chennareddy
 			if (nextNode == null) {
@@ -90,7 +104,7 @@ public class SinglyLinkedList<E> {
 	}
 	public void reverse() {
 		
-		Node<E> currentNode = node;
+		Node<E> currentNode = headNode;
 		Node<E> nextNode = currentNode.next;
 		Node<E> prevNode = null;
 		while (nextNode != null) {
@@ -102,12 +116,12 @@ public class SinglyLinkedList<E> {
 			prevNode.next = temp;
 		}
 		currentNode.next = prevNode;
-		node = currentNode;
+		headNode = currentNode;
 	}
 	public int size() {
 		return size;
 	}
-	private static class Node<E> {
+	public static class Node<E> {
 		
 		private E element;
 		private Node<E> next;
@@ -115,5 +129,21 @@ public class SinglyLinkedList<E> {
 			this.element = element;
 			this.next = next;
 		}
+		public E getElement() {
+			return element;
+		}
+		public Node<E> getNext() {
+			return next;
+		}
+		
+		public void setNext(Node<E> next) {
+			this.next = next;
+		}
+	}
+	public Node<E> getHeadNode() {
+		return headNode;
+	}
+	public void setHeadNode(Node<E> headNode) {
+		this.headNode = headNode;
 	}
 }
