@@ -1,11 +1,11 @@
-package com.practice.datastructures.linear;
+package com.practice.datastructures.linear.linkedlist;
 
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import com.practice.datastructures.linear.SinglyLinkedList.Node;
+import com.practice.datastructures.linear.linkedlist.SinglyLinkedList.Node;
 
-public class MiddleElementSinglyLinkedList {
+public class FindingMiddleElement {
 
 	public static void main(String[] args) {
 

@@ -1,8 +1,8 @@
-package com.practice.datastructures.linear;
+package com.practice.datastructures.linear.linkedlist;
 
-import com.practice.datastructures.linear.SinglyLinkedList.Node;
+import com.practice.datastructures.linear.linkedlist.SinglyLinkedList.Node;
 
-public class RemoveNodeFromSinglyLinkedList {
+public class RemovingNode {
 
 	public static void main(String[] args) {
 
