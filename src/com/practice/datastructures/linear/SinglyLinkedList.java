@@ -102,22 +102,6 @@ public class SinglyLinkedList<E> {
 		}
 		return false;
 	}
-	public void reverse() {
-		
-		Node<E> currentNode = headNode;
-		Node<E> nextNode = currentNode.next;
-		Node<E> prevNode = null;
-		while (nextNode != null) {
-			
-			Node<E> temp = prevNode;
-			prevNode = currentNode;
-			currentNode = nextNode;
-			nextNode = currentNode.next;
-			prevNode.next = temp;
-		}
-		currentNode.next = prevNode;
-		headNode = currentNode;
-	}
 	public int size() {
 		return size;
 	}
