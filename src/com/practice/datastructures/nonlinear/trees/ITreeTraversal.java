@@ -1,6 +1,6 @@
 package com.practice.datastructures.nonlinear.trees;
 
-import com.practice.datastructures.nonlinear.trees.BinarySearchTree.Node;
+import com.practice.datastructures.nonlinear.trees.ITree.Node;
 
 public interface ITreeTraversal {
 

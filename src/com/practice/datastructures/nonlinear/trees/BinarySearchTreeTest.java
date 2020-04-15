@@ -4,8 +4,8 @@ public class BinarySearchTreeTest {
 
 	public static void main(String[] args) {
 		
-		InsertionBinarySearchTree<Integer> inputTree =
-				new InsertionBinarySearchTree<>();
+		ITree<Integer> inputTree =
+				new BinarySearchTree<>();
 		inputTree.insert(6);
 		inputTree.insert(4);
 		inputTree.insert(8);
@@ -13,6 +13,34 @@ public class BinarySearchTreeTest {
 		inputTree.insert(7);
 		inputTree.insert(5);
 		inputTree.insert(9);
-		System.out.println();
+		inputTree.insert(9);
+		inputTree.insert(12);
+		inputTree.insert(10);
+		
+		inputTree.removeAllNodes();
+		ITreeTraversal traversal = new TreeTraversal();
+		traversal.preOrderTraversal(inputTree.getHead());
+		System.out.println("\nTree Height: " + inputTree.height());
+		
+		System.out.println("isIdentical: " + isIdenticalTest());
+	}
+	private static boolean isIdenticalTest() {
+		
+		ITree<Integer> firstTree =
+				new BinarySearchTree<>();
+		firstTree.insert(6);
+		firstTree.insert(4);
+		firstTree.insert(8);
+		firstTree.insert(3);
+		
+		ITree<Integer> secondTree =
+				new BinarySearchTree<>();
+		secondTree.insert(6);
+		secondTree.insert(4);
+		secondTree.insert(8);
+		secondTree.insert(3);
+		
+		return BinarySearchTreeUtil.isIdentical(firstTree.getHead(),
+				secondTree.getHead());
 	}
 }
