@@ -25,7 +25,7 @@ public class TreeTraversal implements ITreeTraversal {
 		System.out.print("\nInOrder Traversal: ");
 		traversal.inOrderTraversal(headNode);
 		System.out.print("\nBFS Traversal: ");
-		traversal.bfsTraversal(headNode);
+		traversal.levelOrderTraversal(headNode);
 		System.out.print("\nDFS Traversal: ");
 		traversal.dfsTraversal(headNode);
 	}
@@ -59,7 +59,7 @@ public class TreeTraversal implements ITreeTraversal {
 		}
 	}
 	
-	public <T extends Comparable<T>> void bfsTraversal(Node<T> head) {
+	public <T extends Comparable<T>> void levelOrderTraversal(Node<T> head) {
 		// TODO: need to implement it properly
 		int height = BinarySearchTreeUtil.height(head);
 		if (head != null) {
@@ -69,8 +69,8 @@ public class TreeTraversal implements ITreeTraversal {
 //			print(head);
 			print(left);
 			print(right);
-			bfsTraversal(left);
-			bfsTraversal(right);
+			levelOrderTraversal(left);
+			levelOrderTraversal(right);
 		}
 	}
 
@@ -82,5 +82,17 @@ public class TreeTraversal implements ITreeTraversal {
 	public <T extends Comparable<T>> void dfsTraversal(Node<T> head) {
 		
 		preOrderTraversal(head);
+	}
+
+	@Override
+	public <T extends Comparable<T>> void spiralOrderTraversal(Node<T> head) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T extends Comparable<T>> void reverseLevelOrderTraversal(Node<T> head) {
+		// TODO Auto-generated method stub
+		
 	}
 }

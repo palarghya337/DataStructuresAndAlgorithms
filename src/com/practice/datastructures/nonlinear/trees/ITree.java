@@ -1,6 +1,6 @@
 package com.practice.datastructures.nonlinear.trees;
 
-public interface ITree<T extends Comparable<T>> {
+public interface ITree<T> {
 	
 	/**
 	 * Method to insert data in a tree.
@@ -32,7 +32,7 @@ public interface ITree<T extends Comparable<T>> {
 	 */
 	void removeAllNodes();
 	
-	public static class Node<T extends Comparable<T>> {
+	public static class Node<T> {
 		
 		protected T element;
 		protected Node<T> left;
