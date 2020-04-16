@@ -31,7 +31,7 @@ public class TreeTraversal implements ITreeTraversal {
 	}
 
 	@Override
-	public <T extends Comparable<T>> void preOrderTraversal(Node<T> head) {
+	public <T> void preOrderTraversal(Node<T> head) {
 		if (head != null) {
 			System.out.print(head.element + " ");
 			preOrderTraversal(head.left);
@@ -40,7 +40,7 @@ public class TreeTraversal implements ITreeTraversal {
 	}
 
 	@Override
-	public <T extends Comparable<T>> void postOrderTraversal(Node<T> head) {
+	public <T> void postOrderTraversal(Node<T> head) {
 		
 		if (head != null) {
 			postOrderTraversal(head.left);
@@ -50,7 +50,7 @@ public class TreeTraversal implements ITreeTraversal {
 	}
 
 	@Override
-	public <T extends Comparable<T>> void inOrderTraversal(Node<T> head) {
+	public <T> void inOrderTraversal(Node<T> head) {
 
 		if (head != null) {
 			inOrderTraversal(head.left);
@@ -58,40 +58,40 @@ public class TreeTraversal implements ITreeTraversal {
 			inOrderTraversal(head.right);
 		}
 	}
-	
-	public <T extends Comparable<T>> void levelOrderTraversal(Node<T> head) {
-		// TODO: need to implement it properly
+	@Override
+	public <T> void levelOrderTraversal(Node<T> head) {
+		
 		int height = BinarySearchTreeUtil.height(head);
-		if (head != null) {
-			
-			Node<T> left = head.left;
-			Node<T> right = head. right;
-//			print(head);
-			print(left);
-			print(right);
-			levelOrderTraversal(left);
-			levelOrderTraversal(right);
+		for (int i = 1; i <= height; i++) {
+			levelOrderTraversal(head, i);
 		}
 	}
 
-	private <T extends Comparable<T>> void print(Node<T> node) {
-		if (node != null) {
-			System.out.print(node.element + " ");
+	private <T> void levelOrderTraversal(Node<T> head, int level) {
+		
+		if (head != null) {
+			if (level == 1) {
+				System.out.print(head.element + " ");
+			} else {
+				levelOrderTraversal(head.left, level - 1);
+				levelOrderTraversal(head.right, level - 1);
+			}
 		}
 	}
-	public <T extends Comparable<T>> void dfsTraversal(Node<T> head) {
+	@Override
+	public <T> void dfsTraversal(Node<T> head) {
 		
 		preOrderTraversal(head);
 	}
 
 	@Override
-	public <T extends Comparable<T>> void spiralOrderTraversal(Node<T> head) {
+	public <T> void spiralOrderTraversal(Node<T> head) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public <T extends Comparable<T>> void reverseLevelOrderTraversal(Node<T> head) {
+	public <T> void reverseLevelOrderTraversal(Node<T> head) {
 		// TODO Auto-generated method stub
 		
 	}
