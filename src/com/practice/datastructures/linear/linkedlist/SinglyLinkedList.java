@@ -1,38 +1,24 @@
 package com.practice.datastructures.linear.linkedlist;
 
-public class SinglyLinkedList<E> {
+public class SinglyLinkedList<T> implements LinkedList<T> {
 
-	private int size;
-	private Node<E> headNode;
-	private Node<E> lastNode;
+	private volatile int size;
+	private Node<T> head;
+	private Node<T> lastNode;
 	
 	public SinglyLinkedList() {
-		// Default constructor
-	}
-	/**
-	 * @param element
-	 */
-	public void insert(E element) {
-		
-		final Node<E> localNode = new Node<>(element, null);
-		if (this.headNode == null) {
-			this.headNode = localNode;
-		} else {
-			lastNode.next = localNode;
-		}
-		lastNode = localNode;
-		size++;
+		super();
 	}
 	/**
 	 * @param index
 	 * @return E
 	 */
-	public E get(int index) {
+	public T get(int index) {
 		
 		if (index < size) {
 			
 			int count = 0;
-			Node<E> localNode = headNode;
+			Node<T> localNode = head;
 			while (count++ < index) {
 				localNode = localNode.next;
 			}
@@ -40,10 +26,10 @@ public class SinglyLinkedList<E> {
 		}
 		return null;
 	}
-	public Node<E> getNode(int index) {
+	public Node<T> getNode(int index) {
 		
 		int count = 1;
-		Node<E> tempNode = headNode;
+		Node<T> tempNode = head;
 		while (count != index) {
 			
 			tempNode = tempNode.next;
@@ -54,80 +40,104 @@ public class SinglyLinkedList<E> {
 		}
 		return tempNode;
 	}
-	/**
-	 * @param element
-	 * @return boolean
-	 */
-	public boolean remove(E element) {
+	
+	@Override
+	public void add(T element) {
 		
-		Node<E> prevNode = null;
-		Node<E> currentNode = headNode;
-		Node<E> nextNode = currentNode.next;
-		boolean isElementAvailable = element.equals(currentNode.element);
-		while (!isElementAvailable) {
-			
-			prevNode = currentNode;
-			currentNode = nextNode;
-			nextNode = currentNode.next;
-			isElementAvailable = element.equals(currentNode.element);
-		}
-		if (prevNode == null) {
-			headNode = nextNode;
+		final Node<T> localNode = new Node<>(element, null);
+		if (this.head == null) {
+			this.head = localNode;
 		} else {
-			prevNode.next = nextNode;//8374245387-chennareddy
-			if (nextNode == null) {
-				lastNode = prevNode;
-			} else {
-				currentNode.next = null;
-			}
+			lastNode.next = localNode;
 		}
-		size--;
-		return isElementAvailable;
+		lastNode = localNode;
+		size++;
+	}
+	@Override
+	public void removeAll() {
+		
+		Node<T> current = head;
+		while (current != null) {
+			
+			Node<T> next = current.next;
+			current.next = null;
+			current = next;
+			size--;
+		}
+		head = null;
 	}
 	/**
-	 * Not fully implemented
+	 * Method to find and remove the node in a given parameter.
+	 * If the node is available then it will remove the node
+	 * otherwise it would not do anything.
+	 * 
 	 * @param node
-	 * @return
+	 * @return element
 	 */
-	public boolean remove(Node<E> node) {
+	public T remove(Node<T> node) {
 		
-		if (node != null) {
-			
-			Node<E> nextNode = node.next;
-			if (nextNode != null) {
-				
-				node.element = nextNode.element;
-				node.next = nextNode.next;
-			}
+		if (node == null) {
+			throw new RuntimeException("Removing node can not be null");
 		}
-		return false;
+		T element = null;
+		Node<T> previous = null;
+		Node<T> current = head;
+		while (current != null) {
+			
+			Node<T> next = current.next;
+			if (current.element.equals(node.element)) {
+				if (previous == null) {
+					
+					head = next;
+					current.next = null;
+				} else {
+					previous.next = next;
+					current.next = null;
+				}
+				element = node.element;
+				size--;
+				break;
+			}
+			current = next;
+		}
+		return element;
 	}
+	
+	@Override
 	public int size() {
 		return size;
 	}
-	public static class Node<E> {
+	
+	@Override
+	public void reverse() {
 		
-		private E element;
-		private Node<E> next;
-		public Node(E element, Node<E> next) {
+		Node<T> previous = null;
+		Node<T> current = head;
+		while (current != null) {
+			// storing the next node into temporary variable.
+			Node<T> next = current.next;
+			// pointing current nodes next node to previous node
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		head = previous;
+	}
+	public Node<T> getHeadNode() {
+		return head;
+	}
+	public void setHeadNode(Node<T> headNode) {
+		this.head = headNode;
+	}
+	public static class Node<T> {
+		
+		protected Node<T> current;
+		protected Node<T> next;
+		protected T element;
+		public Node(T element, Node<T> next) {
+			
 			this.element = element;
 			this.next = next;
 		}
-		public E getElement() {
-			return element;
-		}
-		public Node<E> getNext() {
-			return next;
-		}
-		
-		public void setNext(Node<E> next) {
-			this.next = next;
-		}
-	}
-	public Node<E> getHeadNode() {
-		return headNode;
-	}
-	public void setHeadNode(Node<E> headNode) {
-		this.headNode = headNode;
 	}
 }

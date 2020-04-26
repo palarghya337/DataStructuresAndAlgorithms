@@ -18,8 +18,17 @@ public class BinarySearchTreeTest {
 		inputTree.insert(10);
 		
 		inputTree.removeAllNodes();
+		ITree<String> bst = new BinarySearchTree<String>();
+		bst.insert("Arindam");
+		bst.insert("Gond");
+		bst.insert("Anurag");
+		bst.insert("Sourav");
+		bst.insert("Arghya");
+		bst.insert("Kaushik");
+		bst.insert("Bibhash");
+		
 		ITreeTraversal traversal = new TreeTraversal();
-		traversal.preOrderTraversal(inputTree.getHead());
+		traversal.levelOrderTraversal(bst.getHead());
 		System.out.println("\nTree Height: " + inputTree.height());
 		
 		System.out.println("isIdentical: " + isIdenticalTest());
