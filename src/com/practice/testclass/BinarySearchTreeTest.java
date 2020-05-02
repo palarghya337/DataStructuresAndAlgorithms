@@ -1,4 +1,10 @@
-package com.practice.datastructures.nonlinear.trees;
+package com.practice.testclass;
+
+import com.practice.datastructures.nonlinear.trees.BinarySearchTree;
+import com.practice.datastructures.nonlinear.trees.BinarySearchTreeUtil;
+import com.practice.datastructures.nonlinear.trees.ITree;
+import com.practice.datastructures.nonlinear.trees.ITreeTraversal;
+import com.practice.datastructures.nonlinear.trees.TreeTraversal;
 
 public class BinarySearchTreeTest {
 
@@ -28,7 +34,7 @@ public class BinarySearchTreeTest {
 		bst.insert("Bibhash");
 		
 		ITreeTraversal traversal = new TreeTraversal();
-		traversal.levelOrderTraversal(bst.getHead());
+		traversal.levelOrderTraversal(bst.getRoot());
 		System.out.println("\nTree Height: " + inputTree.height());
 		
 		System.out.println("isIdentical: " + isIdenticalTest());
@@ -49,7 +55,7 @@ public class BinarySearchTreeTest {
 		secondTree.insert(8);
 		secondTree.insert(3);
 		
-		return BinarySearchTreeUtil.isIdentical(firstTree.getHead(),
-				secondTree.getHead());
+		return BinarySearchTreeUtil.isIdentical(firstTree.getRoot(),
+				secondTree.getRoot());
 	}
 }

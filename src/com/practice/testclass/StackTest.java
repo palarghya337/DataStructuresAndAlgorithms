@@ -1,16 +1,16 @@
-package com.practice.mainpack;
+package com.practice.testclass;
 
 import java.util.Random;
 import java.util.stream.IntStream;
 
-import com.practice.datastructures.linear.Stack;
+import com.practice.datastructures.linear.ArrayStack;
 
-public class TestStack {
+public class StackTest {
 
 	public static void main(String[] args) {
 		
 		int stackSize = 11;
-		Stack<Integer> stack = new Stack<>(stackSize);
+		ArrayStack<Integer> stack = new ArrayStack<>(stackSize);
 		Random random = new Random();
 		IntStream.generate(() -> random.nextInt(50))
 		.distinct().limit(stackSize).forEach(i -> {

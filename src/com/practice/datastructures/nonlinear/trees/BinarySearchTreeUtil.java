@@ -9,16 +9,16 @@ public class BinarySearchTreeUtil {
 	}
 	/**
 	 * Method to calculate the height of a tree from a given node.
-	 * @param head
+	 * @param root
 	 * @return height
 	 */
-	public static int height(Node<?> head) {
+	public static int height(Node<?> root) {
 		
 		int height = 0;
-		if (head != null) {
+		if (root != null) {
 			
-			int leftHeight = height(head.left) + 1;
-			int rightHeight = height(head.right) + 1;
+			int leftHeight = height(root.left) + 1;
+			int rightHeight = height(root.right) + 1;
 			height = leftHeight > rightHeight ? leftHeight : rightHeight;
 		}
 		return height;

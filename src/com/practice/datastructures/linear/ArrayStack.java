@@ -1,16 +1,16 @@
 package com.practice.datastructures.linear;
 
-public class Stack<T> {
+public class ArrayStack<T> {
 
 	private int size;
 	private int maxSize;
 	private Object[] elements;
 	
-	public Stack() {
+	public ArrayStack() {
 		maxSize = 10;
 		elements = new Object[maxSize];
 	}
-	public Stack(int size) {
+	public ArrayStack(int size) {
 		maxSize = size;
 		elements = new Object[maxSize];
 	}

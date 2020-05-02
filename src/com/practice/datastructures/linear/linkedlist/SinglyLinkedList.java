@@ -131,9 +131,8 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	}
 	public static class Node<T> {
 		
-		protected Node<T> current;
-		protected Node<T> next;
-		protected T element;
+		public Node<T> next;
+		public T element;
 		public Node(T element, Node<T> next) {
 			
 			this.element = element;

@@ -15,7 +15,7 @@ public class TreeTraversal implements ITreeTraversal {
 		inputTree.insert(7);
 		inputTree.insert(5);
 		inputTree.insert(9);
-		Node<Integer> headNode = inputTree.getHead();
+		Node<Integer> headNode = inputTree.getRoot();
 		
 		TreeTraversal traversal = new TreeTraversal();
 		System.out.print("Pre Order Traversal: ");

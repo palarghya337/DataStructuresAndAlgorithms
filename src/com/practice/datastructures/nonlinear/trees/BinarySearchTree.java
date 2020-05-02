@@ -3,11 +3,11 @@ package com.practice.datastructures.nonlinear.trees;
 public class BinarySearchTree<T extends Comparable<T>>
 	implements ITree<T> {
 	
-	private Node<T> head;
+	private Node<T> root;
 	
 	@Override
 	public void insert(T element) {
-		head = insert(element, head);
+		root = insert(element, root);
 	}
 	@Override
 	public Node<T> insert(T element, Node<T> localHead) {
@@ -24,16 +24,16 @@ public class BinarySearchTree<T extends Comparable<T>>
 		return new Node<>(element);
 	}
 	@Override
-	public Node<T> getHead() {
-		return head;
+	public Node<T> getRoot() {
+		return root;
 	}
 	@Override
 	public int height() {
-		return BinarySearchTreeUtil.height(head);
+		return BinarySearchTreeUtil.height(root);
 	}
 	@Override
 	public void removeAllNodes() {
-		this.head = removeNodes(this.head);
+		this.root = removeNodes(this.root);
 	}
 	private Node<T> removeNodes(Node<T> headNode) {
 		
@@ -44,5 +44,24 @@ public class BinarySearchTree<T extends Comparable<T>>
 			headNode = null;
 		}
 		return headNode;
+	}
+	@Override
+	public void remove(Node<T> node) {
+		
+		if (node == null) {
+			throw new RuntimeException("Removing node can not be null");
+		}
+		remove(node, root, null);
+	}
+	public void remove(Node<T> node, Node<T> root, Node<T> previous) {
+		
+		if (root.element.equals(node.element)) {
+//			if (previous)
+		}
+	}
+	@Override
+	public int level() {
+		// TODO need to implement
+		return 0;
 	}
 }

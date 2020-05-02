@@ -13,31 +13,43 @@ public interface ITree<T> {
 	 * under given head node and will return the updated head node.
 	 * 
 	 * @param element
-	 * @param head
+	 * @param root
 	 * @return Node<T>
 	 */
-	Node<T> insert(T element, Node<T> head);
+	Node<T> insert(T element, Node<T> root);
 	/**
 	 * Method to get the head node of a tree.
 	 * @return Node<T>
 	 */
-	Node<T> getHead();
+	Node<T> getRoot();
 	/**
 	 * Method to calculate the height of a tree.
 	 * @return height
 	 */
 	int height();
 	/**
+	 * Method to return the level of a tree.
+	 * @return level
+	 */
+	int level();
+	/**
 	 * This method will remove all the nodes of a tree.
 	 */
 	void removeAllNodes();
+	/**
+	 * This method will remove the specific node which is
+	 * given in the parameter.
+	 * 
+	 * @param node
+	 */
+	void remove(Node<T> node);
 	
 	public static class Node<T> {
 		
-		protected T element;
-		protected Node<T> left;
-		protected Node<T> right;
-		protected Node(T element) {
+		public T element;
+		public Node<T> left;
+		public Node<T> right;
+		public Node(T element) {
 			this.element = element;
 		}
 	}
