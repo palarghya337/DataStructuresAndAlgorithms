@@ -1,4 +1,5 @@
 Tree - https://medium.com/@codingfreak/binary-tree-interview-questions-and-practice-problems-439df7e5ea1f
+What is round robbin?
 1. Scalability
 2. Sharding or Data Partitioning
 3. Load Balancing

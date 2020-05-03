@@ -34,4 +34,56 @@ public class BinaryTreeUtils {
 		}
 		return false;
 	}
+	/**
+	 * @param <T>
+	 * @param root
+	 * @param firstNodeElement
+	 * @param secondNodeElement
+	 * @return commonManager
+	 */
+	public static <T> Node<T> findCommonParent(Node<T> root,
+			T firstNodeElement, T secondNodeElement) {
+		
+		if (root == null || firstNodeElement == null || secondNodeElement == null) {
+			return null;
+		}
+		
+		Node<T> parentIsInLeft = null;
+		Node<T> left = root.left;
+		if (left != null) {
+			if (firstNodeElement.equals(left.element)
+					|| secondNodeElement.equals(left.element)) {
+				
+				parentIsInLeft = root;
+			} else {
+				parentIsInLeft = findCommonParent(left,
+						firstNodeElement, secondNodeElement);
+			}
+		}
+		
+		Node<T> parentIsInRight = null;
+		Node<T> right = root.right;
+		if (right != null) {
+			if (firstNodeElement.equals(right.element)
+					|| secondNodeElement.equals(right.element)) {
+
+				parentIsInRight = root;
+			} else {
+				parentIsInRight = findCommonParent(right,
+						firstNodeElement, secondNodeElement);
+			}
+		}
+		
+		if (parentIsInLeft == null && parentIsInRight == null) {
+			return null;
+		} else if (parentIsInLeft == null) {
+			return parentIsInRight;
+		} else if (parentIsInRight == null) {
+			return parentIsInLeft;
+		} else if (parentIsInLeft.element.equals(parentIsInRight.element)) {
+			return parentIsInLeft;
+		} else {
+			return root;
+		}
+	}
 }

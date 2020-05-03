@@ -11,29 +11,41 @@ public class BinaryTreeTest {
 
 	public static void main(String[] args) {
 		
-		Node<Integer> firstTreeRoot = new Node<>(1);
-		firstTreeRoot.left = new Node<>(2);
-		firstTreeRoot.right = new Node<>(3);
-		firstTreeRoot.left.left = new Node<>(4);
-		firstTreeRoot.left.right = new Node<>(5);
-		firstTreeRoot.right.left = new Node<>(6);
-		firstTreeRoot.right.right = new Node<>(7);
+		isIdentical();
 		
-		Node<Integer> secondTreeRoot = new Node<>(10);
-		secondTreeRoot.left = new Node<>(2);
-		secondTreeRoot.right = new Node<>(3);
-		secondTreeRoot.left.left = new Node<>(4);
-		secondTreeRoot.left.right = new Node<>(5);
-		secondTreeRoot.right.left = new Node<>(6);
-		secondTreeRoot.right.right = new Node<>(7);
+		findCommonManager();
+	}
+
+	private static void findCommonManager() {
+		BinaryTree<Integer> firstTree = new BinaryTree<>();
+		IntStream.range(1, 10)
+			.forEach(firstTree::insert);
+		/*
+		 * {4,6},{8,7},{5,3}
+		 **/
+		Node<Integer> commonManager = BinaryTreeUtils
+				.findCommonParent(firstTree.getRoot(), 3, 7);
+		System.out.println("\nCommon Manager: " + commonManager.element);
+	}
+
+	private static void isIdentical() {
+		BinaryTree<Integer> firstTree = new BinaryTree<>();
+		BinaryTree<Integer> secondTree = new BinaryTree<>();
+		
+		IntStream.range(1, 8)
+			.forEach(i -> {
+				firstTree.insert(i);
+				secondTree.insert(i);
+			});
+		secondTree.insert(10);
 		boolean isIdentical = BinaryTreeUtils
-				.isIdentical(firstTreeRoot, secondTreeRoot);
+				.isIdentical(firstTree.getRoot(),
+						secondTree.getRoot());
 		System.out.println("isIdentical: " + isIdentical);
 		
-		BinaryTree<Integer> binaryTree = new BinaryTree<>();
-		IntStream.range(1, 10).forEach(binaryTree::insert);
 		TreeTraversal traverse = new TreeTraversal();
-		traverse.inOrderTraversal(binaryTree.getRoot());
-		System.out.println("\nLevel: " + binaryTree.level());
+		traverse.dfsTraversal(firstTree.getRoot());
+		System.out.println();
+		traverse.dfsTraversal(secondTree.getRoot());
 	}
 }
