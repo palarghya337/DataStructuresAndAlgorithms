@@ -1,5 +1,25 @@
 Tree - https://medium.com/@codingfreak/binary-tree-interview-questions-and-practice-problems-439df7e5ea1f
 What is round robbin?
+Arrays
+Stacks
+Queues
+Linked Lists
+Hash Tables
+Trees and BST
+Graphs
+Disjoint sets
+Backtracking
+Branch and bound
+Brute-force search
+Divide and conquer
+Dynamic programming
+Greedy algorithm
+Prune and search
+Recursion -> Linked list -> Stack -> Queue -> Two pointers -> Sliding-window -> hashing -> sorting -> binary search -> trees -> BST -> Heaps -> Graph basics -> BFS -> DFS -> backtracking -> greedy -> Dynamic programming -> advanced graph -> Union find -> bit manipulation.
+
+Amazon TestId: 23280666966873
+23280666966873
+------------------------------------------
 1. Scalability
 2. Sharding or Data Partitioning
 3. Load Balancing

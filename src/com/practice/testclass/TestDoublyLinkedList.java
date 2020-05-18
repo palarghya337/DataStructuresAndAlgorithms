@@ -1,8 +1,8 @@
-package com.practice.mainpack;
+package com.practice.testclass;
 
 import java.util.stream.IntStream;
 
-import com.practice.datastructures.linear.DoublyLinkedList;
+import com.practice.datastructures.linear.linkedlist.DoublyLinkedList;
 
 public class TestDoublyLinkedList {
 
