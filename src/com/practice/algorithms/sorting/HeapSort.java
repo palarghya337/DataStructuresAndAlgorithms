@@ -1,10 +1,10 @@
-package com.practice.datastructures.nonlinear.trees;
+package com.practice.algorithms.sorting;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class TurnIntoMaxHeap {
+public class HeapSort {
 
 	public static void main(String[] args) {
 		
@@ -14,10 +14,22 @@ public class TurnIntoMaxHeap {
 				.limit(maxSize)
 				.toArray();
 		
-		array = new int[] {9,33,11,5,18,25,29,22,8,9};
-//		array = new int[] {19, 9, 37, 12, 16, 38, 19, 36, 24, 11};
 		System.out.println(Arrays.toString(array));
-		buildMaxHeap(array, array.length);
+		new HeapSort().sort(array);
+		System.out.println(Arrays.toString(array));
+	}
+	public void sort(int[] array) {
+		
+		int arraySize = 0;
+		if (array == null || (arraySize = array.length) < 2) {
+			return;
+		}
+		buildMaxHeap(array, arraySize);
+		while (arraySize --> 1) {
+			
+			swap(array, 0, arraySize);
+			heapify(array, arraySize, 0);
+		}
 	}
 	/**
 	 * Method to build the max heap, which means parent node
@@ -27,7 +39,7 @@ public class TurnIntoMaxHeap {
 	 * @param array which we should heapify
 	 * @param arraySize size of the array.
 	 */
-	public static void buildMaxHeap(int[] array, int arraySize) {
+	private void buildMaxHeap(int[] array, int arraySize) {
 		/*
 		 * We will start doing heapify from parent of last node
 		 * because leaf nodes does not have child and we do
@@ -36,20 +48,20 @@ public class TurnIntoMaxHeap {
 		int parentOfLastNode = (arraySize - 1) / 2;
 		while (parentOfLastNode > -1) {
 			
-			heapify(array, parentOfLastNode, arraySize);
+			heapify(array, arraySize, parentOfLastNode);
 			parentOfLastNode--;
 		}
 	}
 	/**
 	 * @param array
-	 * @param parent
 	 * @param arraySize
+	 * @param parentIndex
 	 */
-	public static void heapify(int[] array, int parent,
-			int arraySize) {
+	private void heapify(int[] array, int arraySize,
+			int parentIndex) {
 		
-		int largest = parent;
-		int right = (parent + 1) * 2;
+		int largest = parentIndex;
+		int right = (parentIndex + 1) * 2;
 		int left = right - 1;
 		/*
 		 * In the below code we will find the highest element
@@ -57,7 +69,7 @@ public class TurnIntoMaxHeap {
 		 **/
 		largest = getHighestElementIndex(array, arraySize, largest, left);
 		largest = getHighestElementIndex(array, arraySize, largest, right);
-		if (largest != parent) {
+		if (largest != parentIndex) {
 			/*
 			 * if parent is not the highest element then we
 			 * swap the highest element with the parent element
@@ -65,8 +77,8 @@ public class TurnIntoMaxHeap {
 			 * highest element index. This process will continue
 			 * until the sub tree is hepified.
 			 **/
-			swap(array, parent, largest);
-			heapify(array, largest, arraySize);
+			swap(array, parentIndex, largest);
+			heapify(array, arraySize, largest);
 		}
 	}
 	/**
@@ -81,7 +93,7 @@ public class TurnIntoMaxHeap {
 	 * @param childIndex
 	 * @return largestElementIndex
 	 */
-	private static int getHighestElementIndex(int[] array, int arraySize,
+	private int getHighestElementIndex(int[] array, int arraySize,
 			int parentIndex, int childIndex) {
 		
 		return childIndex < arraySize
@@ -94,12 +106,11 @@ public class TurnIntoMaxHeap {
 	 * @param parentIndex
 	 * @param childIndex
 	 */
-	private static void swap(int[] array, int parentIndex,
+	private void swap(int[] array, int parentIndex,
 			int childIndex) {
 
 		int temp = array[parentIndex];
 		array[parentIndex] = array[childIndex];
 		array[childIndex] = temp;
-//		System.out.println(Arrays.toString(array));
 	}
 }

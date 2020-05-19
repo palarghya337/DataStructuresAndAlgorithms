@@ -20,12 +20,20 @@ public class TurnIntoMinHeap {
 		buildMinHeap(array, array.length);
 		System.out.println(Arrays.toString(array));
 	}
-	private static void buildMinHeap(int[] array,
+	/**
+	 * Method to build the min heap, which means parent node
+	 * of a tree should contains smallest element than it's
+	 * child.
+	 * 
+	 * @param array which we should heapify
+	 * @param arraySize size of the array.
+	 */
+	public static void buildMinHeap(int[] array,
 			int arraySize) {
-
 		/*
-		 * We will start heapifying from parent of last node because
-		 * leaf nodes will always be heapified.
+		 * We will start doing heapify from parent of last node
+		 * because leaf nodes does not have child and we do
+		 * not need to heapify those.
 		 **/
 		int parent = arraySize / 2;
 		while (parent > -1) {
@@ -34,36 +42,66 @@ public class TurnIntoMinHeap {
 			parent--;
 		}
 	}
+	/**
+	 * @param array
+	 * @param arraySize
+	 * @param parent
+	 */
 	private static void heapify(int[] array, int arraySize, int parent) {
 		
 		int smallestIndex = parent;
 		int rightIndex = (parent + 1) * 2;
 		int leftIndex = rightIndex - 1;
+		/*
+		 * In the below code we will find the highest element
+		 * among the parent and their left and right child node.
+		 **/
 		smallestIndex = getSmallestIndex(array, arraySize,
 				smallestIndex, leftIndex);
 		smallestIndex = getSmallestIndex(array, arraySize,
 				smallestIndex, rightIndex);
 		if (smallestIndex != parent) {
 			/*
-			 * If parent element is not the smallest element then
-			 * swap parent element with the smallest element and
-			 * then again heapify the founded smallest element.
+			 * if parent is not the smallest element then we
+			 * swap the smallest element with the parent element
+			 * and call the hepify method again for founded
+			 * smallest element index. This process will continue
+			 * until the sub tree is hepified.
 			 **/
 			swap(array, parent, smallestIndex);
 			heapify(array, arraySize, smallestIndex);
 		}
 	}
+	/**
+	 * Method to get the smallest element index. This method
+	 * will check whether parent index has the smallest element
+	 * or the child index. If child contains the smallest element
+	 * then return the child index otherwise parent index.
+	 * 
+	 * @param array
+	 * @param arraySize
+	 * @param parentIndex
+	 * @param childIndex
+	 * @return largestElementIndex
+	 */
 	private static int getSmallestIndex(int[] array, int arraySize,
-			int assumedSmallestIndex, int currentIndex) {
-		return currentIndex < arraySize && array[currentIndex] < array[assumedSmallestIndex] ?
-				currentIndex : assumedSmallestIndex;
+			int parentIndex, int childIndex) {
+		return childIndex < arraySize
+				&& array[childIndex] < array[parentIndex]
+						? childIndex : parentIndex;
 	}
+	/**
+	 * Method to swap the elements.
+	 * @param array
+	 * @param parentIndex
+	 * @param childIndex
+	 */
 	private static void swap(int[] array, int parentIndex,
 			int childIndex) {
 
 		int temp = array[parentIndex];
 		array[parentIndex] = array[childIndex];
 		array[childIndex] = temp;
-		System.out.println(Arrays.toString(array));
+//		System.out.println(Arrays.toString(array));
 	}
 }
