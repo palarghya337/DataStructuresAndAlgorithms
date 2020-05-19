@@ -14,39 +14,46 @@ public class TurnIntoMaxHeap {
 				.limit(maxSize)
 				.toArray();
 		
-//		array = new int[] {9,33,11,5,18,25,29,22,8,9};
-		array = new int[] {19, 9, 37, 12, 16, 38, 19, 36, 24, 11};
+		array = new int[] {9,33,11,5,18,25,29,22,8,9};
+//		array = new int[] {19, 9, 37, 12, 16, 38, 19, 36, 24, 11};
 		System.out.println(Arrays.toString(array));
-		convertToMaxHeap(array, array.length);
-		System.out.println(Arrays.toString(array));
+		buildMaxHeap(array, array.length);
 	}
 
-	private static void convertToMaxHeap(int[] array, int arraySize) {
-
-		int parent = arraySize / 2;
-		boolean isSwaped = false;
-		while (parent > -1) {
+	public static void buildMaxHeap(int[] array, int arraySize) {
+		
+		int parentOfLastNode = (arraySize - 1) / 2;
+		while (parentOfLastNode > -1) {
 			
-			int right = (parent + 1) * 2;
-			int left = right - 1;
-			if (left < arraySize
-					&& array[parent] < array[left]) {
-				
-				swap(array, parent, left);
-				isSwaped = true;
-			}
-			if (right < arraySize
-					&& array[parent] < array[right]) {
-				
-				swap(array, parent, right);
-				isSwaped = true;
-			}
-			parent--;
-		}
-		if (isSwaped) {
-			convertToMaxHeap(array, arraySize);
+			heapify(array, parentOfLastNode, arraySize);
+			parentOfLastNode--;
 		}
 	}
+	private static void heapify(int[] array, int parent,
+			int arraySize) {
+		
+		int largest = parent;
+		int right = (parent + 1) * 2;
+		int left = right - 1;
+		largest = getHighestElementIndex(array, arraySize, largest, left);
+		largest = getHighestElementIndex(array, arraySize, largest, right);
+		if (largest != parent) {
+			
+			swap(array, parent, largest);
+			heapify(array, largest, arraySize);
+		}
+	}
+
+	private static int getHighestElementIndex(int[] array, int arraySize,
+			int assumedLargestIndex, int currentIndex) {
+		
+		if (currentIndex < arraySize
+				&& array[currentIndex] > array[assumedLargestIndex]) {
+			return currentIndex;
+		}
+		return assumedLargestIndex;
+	}
+
 	private static void swap(int[] array, int parentIndex,
 			int childIndex) {
 
