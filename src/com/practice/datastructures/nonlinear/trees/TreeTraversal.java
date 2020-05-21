@@ -1,5 +1,8 @@
 package com.practice.datastructures.nonlinear.trees;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.practice.datastructures.nonlinear.trees.ITree.Node;
 
 public class TreeTraversal implements ITreeTraversal {
@@ -28,6 +31,14 @@ public class TreeTraversal implements ITreeTraversal {
 		traversal.levelOrderTraversal(headNode);
 		System.out.print("\nDFS Traversal: ");
 		traversal.dfsTraversal(headNode);
+		System.out.print("\nLeft View of a Tree: ");
+		traversal.leftView(headNode);
+		System.out.print("\nRight View of a Tree: ");
+		traversal.rightView(headNode);
+		System.out.print("\nBottom View of a Tree: ");
+		traversal.bottomView(headNode);
+		System.out.print("\nTop View of a Tree: ");
+		traversal.topView(headNode);
 	}
 
 	@Override
@@ -94,5 +105,79 @@ public class TreeTraversal implements ITreeTraversal {
 	public <T> void reverseLevelOrderTraversal(Node<T> head) {
 		// TODO Auto-generated method stub
 		
+	}
+	public <T> void leftView(Node<T> root) {
+		if (root != null) {
+			System.out.print(root.element + " ");
+			if (root.left == null) {
+				leftView(root.right);
+			} else {
+				leftView(root.left);
+			}
+		}
+	}
+	public <T> void rightView(Node<T> root) {
+		
+		if (root != null) {
+			
+			System.out.print(root.element + " ");
+			if (root.right == null) {
+				rightView(root.left);
+			} else {
+				rightView(root.right);
+			}
+		}
+	}
+	public <T> void bottomView(Node<T> root) {
+		
+		if (root != null) {
+			
+			int hight = BinarySearchTreeUtil.height(root);
+			Map<Integer, T> bottomViewData = new HashMap<>();
+			for (int i = 1; i <= hight; i++) {
+				bottomView(root, i, 0, bottomViewData);
+			}
+			System.out.print(bottomViewData.values());
+		}
+	}
+
+	private <T> void bottomView(Node<T> root,
+			int level, int distance,
+			Map<Integer, T> bottomViewData) {
+		
+		if (root != null) {
+			if (level == 1) {
+				
+				bottomViewData.put(distance, root.element);
+				return;
+			}
+			bottomView(root.left, level - 1, distance - 1, bottomViewData);
+			bottomView(root.right, level - 1, distance + 1, bottomViewData);
+		}
+	}
+	public <T> void topView(Node<T> root) {
+		
+		int hight = BinarySearchTreeUtil.height(root);
+		Map<Integer, T> topViewData = new HashMap<>();
+		for (int i = 1; i <= hight; i++) {
+			topView(root, i, 0, topViewData);
+		}
+		System.out.print(topViewData.values());
+	}
+
+	private <T> void topView(Node<T> root, int level,
+			int distance, Map<Integer, T> topViewData) {
+		
+		if (root != null) {
+			if (level == 1) {
+				if (!topViewData.containsKey(distance)) {
+					
+					topViewData.put(distance, root.element);
+				}
+				return;
+			}
+			topView(root.left, level - 1, distance - 1, topViewData);
+			topView(root.right, level - 1, distance + 1, topViewData);
+		}
 	}
 }

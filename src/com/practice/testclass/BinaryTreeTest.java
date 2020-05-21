@@ -10,10 +10,50 @@ import com.practice.datastructures.nonlinear.trees.TreeTraversal;
 public class BinaryTreeTest {
 
 	public static void main(String[] args) {
-		
+		/*
 		isIdentical();
 		
 		findCommonManager();
+		
+		findNextNode();
+		*/
+		convertBTtoDLL();
+	}
+
+	private static void convertBTtoDLL() {
+		
+		BinaryTree<Integer> firstTree = new BinaryTree<>();
+		IntStream.range(1, 10)
+		.forEach(firstTree::insert);
+		Node<Integer> head = BinaryTreeUtils
+				.getDoublyLinkedList(
+						firstTree.getRoot());
+		while (head != null) {
+			
+			StringBuilder b = new StringBuilder();
+			b.append(head.element);
+			b.append("(");
+			if (head.left == null) {
+				b.append("-");
+			} else {
+				b.append(head.left.element);
+			}
+			b.append(") ");
+			System.out.print(b);
+			head = head.right;
+		}
+	}
+
+	private static void findNextNode() {
+		
+		BinaryTree<Integer> firstTree = new BinaryTree<>();
+		IntStream.range(1, 10)
+		.forEach(firstTree::insert);
+		
+		Node<Integer> nodeToFind = new Node<Integer>(4);
+		nodeToFind = BinaryTreeUtils
+				.getNextNode(firstTree.getRoot(), nodeToFind);
+		System.out.println(nodeToFind == null ? "null" : nodeToFind.element);
 	}
 
 	private static void findCommonManager() {
@@ -24,7 +64,7 @@ public class BinaryTreeTest {
 		 * {4,6},{8,7},{5,3}
 		 **/
 		Node<Integer> commonManager = BinaryTreeUtils
-				.findCommonParent(firstTree.getRoot(), 3, 7);
+				.getLowestCommonParent(firstTree.getRoot(), 3, 7);
 		System.out.println("\nCommon Manager: " + commonManager.element);
 	}
 

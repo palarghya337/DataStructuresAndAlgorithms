@@ -14,7 +14,7 @@ public class ArrayStack<T> {
 		maxSize = size;
 		elements = new Object[maxSize];
 	}
-	public boolean add(T element) {
+	public boolean push(T element) {
 		
 		if (size < maxSize) {
 			elements[size++] = element;
@@ -22,7 +22,7 @@ public class ArrayStack<T> {
 		}
 		return false;
 	}
-	public T remove() {
+	public T pop() {
 		if (size < 0) {
 			return null;
 		}

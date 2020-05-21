@@ -15,12 +15,12 @@ public class StackTest {
 		IntStream.generate(() -> random.nextInt(50))
 		.distinct().limit(stackSize).forEach(i -> {
 			System.out.print(i + " ");
-			stack.add(i);
+			stack.push(i);
 		});
 		
 		System.out.println("\n" + stack.isEmpty());
 		IntStream.range(0, stackSize).forEach(i -> {
-			System.out.print(stack.remove() + " ");
+			System.out.print(stack.pop() + " ");
 		});
 		
 		System.out.println("\n" + stack.isEmpty());
