@@ -1,8 +1,12 @@
-package com.practice.datastructures.linear.linkedlist;
+package com.practice.testclass;
 
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import com.practice.datastructures.linear.linkedlist.LinkedList;
+import com.practice.datastructures.linear.linkedlist.LinkedListUtil;
+import com.practice.datastructures.linear.linkedlist.RemoveNodeFromSinglyLinkedList;
+import com.practice.datastructures.linear.linkedlist.SinglyLinkedList;
 import com.practice.datastructures.linear.linkedlist.SinglyLinkedList.Node;
 
 public class LinkedListTest {
@@ -12,7 +16,7 @@ public class LinkedListTest {
 	public static void main(String[] args) {
 
 		SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
-		
+		/*
 		// check for palindrom
 		testPalindromLinkedList(linkedList);
 		// removing nodes
@@ -23,6 +27,17 @@ public class LinkedListTest {
 		sort(linkedList);
 		// remove duplicates from sorted linked list
 		removeDuplicatesFromSortedLinkedList(linkedList);
+		*/
+		removeElementWithoutHeadNode();
+	}
+	private static void removeElementWithoutHeadNode() {
+		
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		IntStream.range(1, 11).forEach(list::add);
+		Node<Integer> node = list.getNode(1);
+		printList(list.getHeadNode());
+		RemoveNodeFromSinglyLinkedList.remove(node);
+		printList(list.getHeadNode());
 	}
 	private static void removeDuplicatesFromSortedLinkedList(SinglyLinkedList<Integer> linkedList) {
 		
