@@ -18,17 +18,16 @@ public class QueueUsingStack {
 		
 		private T push(T item) {
 			
-			while (!stack.isEmpty()) {
-				stack2.push(stack.pop());
-			}
-			T newItem = stack.push(item);
-			while (!stack2.isEmpty()) {
-				stack.push(stack2.pop());
-			}
-			return newItem;
+			return stack.push(item);
 		}
 		private T pop() {
-			return stack.pop();
+			
+			if (stack2.isEmpty()) {
+				while (!stack.isEmpty()) {
+					stack2.push(stack.pop());
+				}
+			}
+			return stack2.pop();
 		}
 	}
 }

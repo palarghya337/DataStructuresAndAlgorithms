@@ -1,15 +1,14 @@
 package com.practice.datastructures.linear.linkedlist;
 
-public class SinglyLinkedList<T> implements LinkedList<T> {
+public class SinglyLinkedList<T> {
 
-	private volatile int size;
+	private int size;
 	private Node<T> head;
 	private Node<T> lastNode;
 	
-	public SinglyLinkedList() {
-		super();
-	}
+	public SinglyLinkedList() {}
 	/**
+	 * Returns the element of a given index in a linked list.
 	 * @param index
 	 * @return E
 	 */
@@ -26,6 +25,11 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		return null;
 	}
+	/**
+	 * Returns the Node of a given index in the linked list.
+	 * @param index
+	 * @return Node
+	 */
 	public Node<T> getNode(int index) {
 		
 		int count = 1;
@@ -40,8 +44,10 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		return tempNode;
 	}
-	
-	@Override
+	/**
+	 * Method to insert an element in a linked list.
+	 * @param element
+	 */
 	public void add(T element) {
 		
 		final Node<T> localNode = new Node<>(element, null);
@@ -53,7 +59,9 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		lastNode = localNode;
 		size++;
 	}
-	@Override
+	/**
+	 * Method to remove all the elements in the linked list.
+	 */
 	public void removeAll() {
 		
 		Node<T> current = head;
@@ -77,7 +85,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	public T remove(Node<T> node) {
 		
 		if (node == null) {
-			throw new RuntimeException("Removing node can not be null");
+			throw new RuntimeException("Node can not be null");
 		}
 		T element = null;
 		Node<T> previous = null;
@@ -102,13 +110,15 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		return element;
 	}
-	
-	@Override
+	/*
+	 * Returns the size of the linked list.
+	 **/
 	public int size() {
 		return size;
 	}
-	
-	@Override
+	/*
+	 * Method will reverse the current linked list.
+	 **/
 	public void reverse() {
 		
 		Node<T> previous = null;
@@ -123,9 +133,18 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		head = previous;
 	}
+	/**
+	 * Returns the head node of current linked list.
+	 * @return Node
+	 */
 	public Node<T> getHeadNode() {
-		return head;
+		Node<T> duplicateHead = head;
+		return duplicateHead;
 	}
+	/**
+	 * Method to set the head node of current linked list.
+	 * @param headNode
+	 */
 	public void setHeadNode(Node<T> headNode) {
 		this.head = headNode;
 	}
